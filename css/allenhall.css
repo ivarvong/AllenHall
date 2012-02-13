@@ -1,0 +1,70 @@
+ #flag h1 {
+	font-family: "Helvetica Neue";
+}
+
+#wrapper {
+	width: 950px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#floor-selection {
+	position: relative;
+}
+
+.floor-selector {
+	margin-right: 10px;	
+	opacity: 0.6;
+	position: absolute;
+	top: 0;
+	display:block;
+}
+
+#floor-one {
+	right: 640px;
+}
+#floor-two {
+	right: 320px;
+}
+#floor-three {
+	right: 0;
+}
+
+.floor-selector img {
+	width: 310px;
+	height: auto;
+	cursor: pointer;
+}
+
+.floor-hover {
+	opacity: 1.0;
+} 
+
+#canvas-map-wrapper {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 310px;
+	height: 310px;
+	z-index: 2;
+}
+
+#canvas-map {
+	/*background:url('/allenhall/images/secondFloorMap.jpg');*/
+	background-size: contain;
+	width: 310px;
+	height: 310px;
+	z-index: 3;
+}
+
+#backbutton {
+	position: absolute;
+	right: 60px;
+	top: -60px;
+	cursor: pointer;
+}
+#video-wrapper {	
+	position: absolute;
+	right: 330px;
+	/*right: 0;*/
+}
