@@ -1,4 +1,34 @@
-var cursor, points, lengths, totalLength, canvasMap, videoPercent, userClick = [2,2];
+canvasMap = null;
+videoPercent = 0;
+userClick = [2,2];
+cursor = [-20,-20];
+points = [];
+lengths = new Array();
+sumlengths = new Array();
+totalLength = 0;
+
+fileDict = new Array();
+fileDict["floor-one"] =   "/allenhall/video/firstFloor.mp4";
+fileDict["floor-two"] =   "/allenhall/video/secondFloor.mp4";
+fileDict["floor-three"] = "/allenhall/video/thirdFloor.mp4";
+
+pathDict = new Array();
+pathDict["floor-one"] =   [[40,245], [28,174], [27,70], [47,69]];
+pathDict["floor-two"] =   [[50,110], [50,220], [48,250]];
+pathDict["floor-three"] = [[220,142], [213,138], [100,136]];
+
+function buildMapData() {
+	lengths = new Array();
+	sumlengths = new Array();
+	totalLength = 0;	
+	for (var i=0;i<points.length-1;i++) {
+		d = Math.pow((points[i+1][1]-points[i][1]),2) + Math.pow((points[i+1][0]-points[i][0]),2);
+		d = Math.pow(d, 0.5);
+		lengths.push(d);
+		totalLength += d;
+		sumlengths.push(totalLength);
+	}
+}
 
 function draw() {
 	canvasMap = document.getElementById("canvas-map");
@@ -113,12 +143,13 @@ function canvasMousedown(e) {
 		//console.log(closestIndex, pt);
 }
 
-function getPercentProg() {
+
+/*function getPercentProg() {
        var v = document.getElementsByTagName('video')[0];
        var endBuf = v.buffered.end(0);
        var soFar = parseInt(((endBuf / v.duration) * 100));
        //document.getElementById("loadStatus").innerHTML =  soFar + '%';
-}
+} //*/
  
 
 function timeupdate() {
@@ -145,34 +176,18 @@ function timeupdate() {
 	cursor[0] = (1-percentOfSegment)*points[curSegment][0] + (percentOfSegment)*points[curSegment+1][0]
 	cursor[1] = (1-percentOfSegment)*points[curSegment][1] + (percentOfSegment)*points[curSegment+1][1]
 
-	
 	//$("#playheadStatus").html(cursor[1]);
-	
-	draw();
+	if (v.currentTime < v.duration) {
+		draw();
+	}
 }
 
 
 $(document).ready(function() {
 	
-	cursor = [-20,-20];
-	points = [[266,164],[260,160],[200,158], [130, 55]];
-	lengths = new Array();
-	sumlengths = new Array();
-	totalLength = 0;
+	//canvasMap = document.getElementById("canvas-map"); // i dont think i need this here any more?
 	
-	for (var i=0;i<points.length-1;i++) {
-		d = Math.pow((points[i+1][1]-points[i][1]),2) + Math.pow((points[i+1][0]-points[i][0]),2);
-		d = Math.pow(d, 0.5);
-		lengths.push(d);
-		totalLength += d;
-		sumlengths.push(totalLength);
-	}
-
-	canvasMap = document.getElementById("canvas-map");
-	
-	draw();
-	
-	$("#canvas-map").mousedown('canvasMousedown'); 
+	$("#canvas-map").mousedown(canvasMousedown); 
 	
 	$(".floor-selector").hover(function() {
 		$(this).addClass("floor-hover");
@@ -182,30 +197,27 @@ $(document).ready(function() {
 	
 	$(".floor-selector").click(function() {
 		
-		console.log($(this).attr("id"));
-		fileDict = new Array();
-		fileDict["floor-one"] = "/allenhall/video/1stfloor.mp4";
-		fileDict["floor-two"] = "/allenhall/video/second-floor.mp4";
-		fileDict["floor-three"] = "/allenhall/video/secondFloor.mp4";
-		//605, 340
+		//console.log($(this).attr("id"));
+
+		points = pathDict[ $(this).attr("id") ];
+		buildMapData();		
+
+
 		$("#video-wrapper").html("<video id='videoplayer' width='620' height='350' controls><source src='' type='video/mp4' /></video>");
 		
 		$("#videoplayer > source").attr("src", fileDict[ $(this).attr("id") ]);
-		console.log($("#videoplayer > source").attr("src"));
+		//console.log($("#videoplayer > source").attr("src"));
 		var v = document.getElementsByTagName('video')[0];
 		v.load();
+		v.addEventListener('timeupdate',timeupdate,false);
 		setTimeout( function() { v.play(); }, 1200 );
 		setTimeout( function() { $("#video-wrapper").fadeIn(1000); }, 1500 );
-		
-		v.addEventListener('timeupdate',timeupdate,false);
 			
-
-
-		console.log(".fs");
+		//console.log(".fs");
  		$(".floor-selector").not( "#"+$(this).attr("id") ).fadeOut(500);
-		console.log("delay animate");
+		//console.log("delay animate");
 		$(this).delay(300).animate({'right':'0'}, 800); 	
-		console.log("img animate");
+		//console.log("img animate");
 		//$(this) +" > img").animate({"width": "340px"}, 300);
 		console.log("vw");
 		//$("#video-wrapper").delay(1300).fadeIn(200);
@@ -215,7 +227,7 @@ $(document).ready(function() {
 		
 		$("#backbutton").fadeIn();
 		
-		draw();
+		draw(); //canvas scrubber draw
 	
 	});
 		
@@ -223,21 +235,28 @@ $(document).ready(function() {
 		$("#videoplayer").get(0).pause();
 		$("#backbutton").fadeOut();
 		$("#floor-selection").fadeOut(1000, function() {
-		
 			$("#canvas-map-wrapper").hide();	
 			$("#video-wrapper").hide();
-				
 			$("#floor-one").css("right","640px");
 			$("#floor-two").css("right","320px");
 			$("#floor-three").css("right","0px");
 			$(".floor-selector").show();
 			$("#video-wrapper").html("");
-		
 		});
-		
 		$("#floor-selection").fadeIn(1000);
-	
-
 	});	
+		
+		
+	spreadsheet_url = "0As1Yq-MxSBt2dFhMaFp6Vzlnc24xbF9OVDA3R0oxOGc";	
+
+	Tabletop.init( { key: spreadsheet_url,
+                     callback: showInfo,
+                     simpleSheet: true } );
+
+	function showInfo(data, tabletop) {
+    	//alert("Successfully processed!")
+	    console.log(data[0]);
+	    $("#flag h1").html(data[0].flag);
+	}
 		
 });

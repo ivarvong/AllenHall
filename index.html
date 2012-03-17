@@ -14,14 +14,26 @@
 	<link rel="stylesheet" href="css/allenhall.css">
 
 	<script src="js/libs/modernizr.h5bp.custom.js"></script>
+	
+	<script type="text/javascript" src="http://use.typekit.com/gyg7lht.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
 </head>
 <body>
 <header>
 
 </header>
+<div id="loading">... loading ...</div>
+
 <div role="main" id="wrapper">
 
-<div id="flag"><h1>Allen Hall</h1></div>
+<div id="flag"><h1></h1></div>
+
+<div id="summary"></div>
+
+<div id="trailer-video-wrapper">
+	<video id="trailer-video" width="950" height="634" controls=""><source src="/allenhall/video/trailer.mp4" type="video/mp4"></video>
+</div>
 
 <div id="floor-selection">
 
@@ -52,6 +64,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="/allenhall/js/tabletop/src/tabletop.js"></script>
 <script src="js/app.js"></script>
 
 <script>
