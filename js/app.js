@@ -185,6 +185,8 @@ function timeupdate() {
 
 $(document).ready(function() {
 	
+	$("#loading").fadeIn(200);
+	
 	//canvasMap = document.getElementById("canvas-map"); // i dont think i need this here any more?
 	
 	$("#canvas-map").mousedown(canvasMousedown); 
@@ -254,9 +256,14 @@ $(document).ready(function() {
                      simpleSheet: true } );
 
 	function showInfo(data, tabletop) {
-    	//alert("Successfully processed!")
-	    console.log(data[0]);
 	    $("#flag h1").html(data[0].flag);
+	    $("#summary").html(data[0].summary);
+	    
+	    $("#loading").fadeOut(200, function() {
+			$("#wrapper").fadeIn(2000);
+		});
 	}
+	
+
 		
 });

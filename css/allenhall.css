@@ -1,5 +1,15 @@
- #flag h1 {
-	font-family: "adelle";
+#loading {
+	font-family: "Adelle";
+	font-size: 80px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	width: 950px;
+	text-align: center;
+	display: none;
+}
+#flag h1 {
+	font-family: "Adelle";
 	font-size: 40px;
 }
 
@@ -7,6 +17,7 @@
 	width: 950px;
 	margin-left: auto;
 	margin-right: auto;
+	display: none;
 }
 
 #floor-selection {
