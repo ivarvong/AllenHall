@@ -185,7 +185,7 @@ function timeupdate() {
 
 $(document).ready(function() {
 	
-	$("#loading").fadeIn(200);
+	$("#loading").fadeIn(1000);
 	
 	//canvasMap = document.getElementById("canvas-map"); // i dont think i need this here any more?
 	
@@ -259,8 +259,8 @@ $(document).ready(function() {
 	    $("#flag h1").html(data[0].flag);
 	    $("#summary").html(data[0].summary);
 	    
-	    $("#loading").fadeOut(200, function() {
-			$("#wrapper").fadeIn(2000);
+	    $("#loading").delay(0).fadeOut(1000, function() {
+				$("#wrapper").fadeIn(2000);
 		});
 	}
 	
