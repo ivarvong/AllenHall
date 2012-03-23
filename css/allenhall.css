@@ -1,5 +1,5 @@
 #loading {
-	font-family: "Adelle";
+	font-family: "Myriad Pro";
 	font-size: 80px;
 	margin-left: auto;
 	margin-right: auto;
@@ -18,6 +18,31 @@
 	margin-left: auto;
 	margin-right: auto;
 	display: none;
+	padding: 0;
+	border: 0;
+}
+
+#nav {
+	width: 950px;
+	height: 30px;
+	background: #CCCCCC;
+	border-radius: 3px;
+}
+#nav ul {
+	list-style-type: none;
+	margin: auto;
+	padding: 0;
+}
+#nav li {
+	float: left;
+}
+#nav a {
+	display: block;
+	padding: 3px;
+	margin: 3px;
+	text-decoration: none;
+	background: #666666;
+	border-radius: 3px;
 }
 
 #floor-selection {
@@ -66,7 +91,7 @@
 	background-size: contain;
 	width: 310px;
 	height: 310px;
-	z-index: 3;
+	z-index: 5;
 }
 
 #backbutton {

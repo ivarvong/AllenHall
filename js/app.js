@@ -8,9 +8,10 @@ sumlengths = new Array();
 totalLength = 0;
 
 fileDict = new Array();
-fileDict["floor-one"] =   "/allenhall/video/firstFloor.mp4";
-fileDict["floor-two"] =   "/allenhall/video/secondFloor.mp4";
-fileDict["floor-three"] = "/allenhall/video/thirdFloor.mp4";
+fileDict["floor-one"] =   "http://allenhall.s3.amazonaws.com/video/firstFloor.mp4";
+fileDict["floor-two"] =   "http://allenhall.s3.amazonaws.com/video/secondFloor.mp4";
+fileDict["floor-three"] = "http://allenhall.s3.amazonaws.com/video/thirdFloor.mp4";
+fileDict["trailer"] =     "http://allenhall.s3.amazonaws.com/video/trailer.mp4";
 
 pathDict = new Array();
 pathDict["floor-one"] =   [[40,245], [28,174], [27,70], [47,69]];
@@ -209,7 +210,7 @@ $(document).ready(function() {
 		
 		$("#videoplayer > source").attr("src", fileDict[ $(this).attr("id") ]);
 		//console.log($("#videoplayer > source").attr("src"));
-		var v = document.getElementsByTagName('video')[0];
+		var v = document.getElementById("videoplayer");
 		v.load();
 		v.addEventListener('timeupdate',timeupdate,false);
 		setTimeout( function() { v.play(); }, 1200 );
@@ -258,10 +259,7 @@ $(document).ready(function() {
 	function showInfo(data, tabletop) {
 	    $("#flag h1").html(data[0].flag);
 	    $("#summary").html(data[0].summary);
-	    
-	    $("#loading").delay(0).fadeOut(1000, function() {
-				$("#wrapper").fadeIn(2000);
-		});
+		$("#wrapper").fadeIn(1000);
 	}
 	
 
