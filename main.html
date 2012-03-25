@@ -28,21 +28,20 @@
 
 <div id="nav">
 	<ul>
-		<li><a href="#trailer" class="nav-button" id="nav-trailer">TRAILER</a></li>
-		<li><a href="#walkthru" class="nav-button" id="nav-walkthru">WALK THOROUGHS</a></li>
-		<li><a href="#compare" class="nav-button" id="nav-slider">COMPARE SLIDER</a></li>
+		<li><a href="#trailer" class="nav-button nav-active" id="nav-trailer">VIDEO TRAILER</a></li>
+		<li><a href="#walkthru" class="nav-button" id="nav-walkthru">INTERACTIVE TOUR</a></li>
+		<li><a href="#walkthru" class="nav-button" id="nav-walkthru-back" style="display:none">INTERACTIVE TOUR</a></li>
+		<!--<li><a href="#compare" class="nav-button" id="nav-slider">COMPARE SLIDER</a></li>-->
 	</ul>
 </div>	
 
-<div id="trailer-video-wrapper">
-	<video id="trailer-video" width="630" height="360" controls=""><source src="http://allenhall.s3.amazonaws.com/video/trailer.mp4" type="video/mp4"></video>
+<div id="trailer-wrapper">
+	<video id="trailer-video" width="950" height="535" controls=""><source src="http://allenhall.s3.amazonaws.com/video/trailer.mp4" type="video/mp4"></video>
 </div>
 
-<div id="floor-selection">
 
-	<div id="backbutton" style="display:none">
-		<h3>back</h3>
-	</div>
+<div id="floor-wrapper">
+<div id="floor-selector">
 
 	<div id="floor-one"   class="floor-selector">
 		<img src="http://ivarvong.com/allenhall/images/level1.jpg"/>
@@ -65,6 +64,7 @@
 		<canvas id="canvas-map" width="300" height="300">No canvas support.</canvas>
 	</div>
 
+</div><!-- end #floor-selection -->
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -74,7 +74,7 @@
 <script src="js/app.js"></script>
 
 <script>
-	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+	var _gaq=[['_setAccount','UA-30306368-1'],['_trackPageview']];
 	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 	s.parentNode.insertBefore(g,s)}(document,'script'));

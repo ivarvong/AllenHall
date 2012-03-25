@@ -252,6 +252,7 @@ $(document).ready(function() {
 		
 	spreadsheet_url = "0As1Yq-MxSBt2dFhMaFp6Vzlnc24xbF9OVDA3R0oxOGc";	
 
+	/*
 	Tabletop.init( { key: spreadsheet_url,
                      callback: showInfo,
                      simpleSheet: true } );
@@ -261,7 +262,26 @@ $(document).ready(function() {
 	    $("#summary").html(data[0].summary);
 		$("#wrapper").fadeIn(1000);
 	}
+	*/
+	$("#wrapper").fadeIn(200);
 	
+	$("#nav-walkthru").click(function() {
+		$("#nav-trailer").removeClass("nav-active");
+		$("#nav-walkthru").addClass("nav-active");
+		$("#trailer-wrapper").fadeOut(200, function() { 
 
+			$("#floor-wrapper").fadeIn(200);
+		});
+	});
+
+	$("#nav-trailer").click(function() {
+		$("#nav-walkthru").removeClass("nav-active");
+		$("#nav-trailer").addClass("nav-active");
+		$("#floor-wrapper").fadeOut(200, function() { 
+			//stop video
+			
+			$("#trailer-wrapper").fadeIn(200);
+		});
+	});
 		
 });
