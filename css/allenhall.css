@@ -1,3 +1,9 @@
+p {
+		font-family: "futura-pt",sans-serif;
+		font-weight: 300;
+		font-size: 22px;
+	}
+	
 #loading {
 	font-family: "Myriad Pro";
 	font-size: 80px;
@@ -128,6 +134,17 @@
 	top: -60px;
 	cursor: pointer;
 }
+
+#prev-button {
+	top: 350px;
+	position: relative;
+}
+#next-button {
+	top: 350px;
+	right: 0;
+	position: relative;
+}
+
 #video-wrapper {	
 	position: absolute;
 	right: 330px;

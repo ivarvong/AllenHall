@@ -95,7 +95,9 @@ function proj(a, b, u) { // a is point 1, b is point 2, u is the user's click po
 }
 
 function canvasMousedown(e) {
-		userClick = [e.pageX - this.offsetLeft, e.pageY - this.offsetTop];
+		userClick = [e.pageX - $("#canvas-map").offset().left, e.pageY - $("#canvas-map").offset().top];
+		console.log(userClick);
+		console.log(e.pageX, e.pageY);
 
 		//$("#debug").html(x + ", " + y);
 		draw();
@@ -135,7 +137,7 @@ function canvasMousedown(e) {
 				pixelDist += sumlengths[closestIndex-1];
 			}
 			
-			var v = document.getElementsByTagName('video')[0];
+			var v = document.getElementById('videoplayer');
 			console.log("about to set to ", v.duration * (pixelDist/totalLength));
 			v.currentTime = v.duration * (pixelDist/totalLength);
 			console.log(v.currentTime);			
@@ -154,7 +156,7 @@ function canvasMousedown(e) {
  
 
 function timeupdate() {
-	var v = document.getElementsByTagName('video')[0];
+	var v = document.getElementById('videoplayer');
 	videoPercent = v.currentTime/v.duration;
 	
 	pixelLengthOnTimeline = totalLength * videoPercent;
@@ -183,12 +185,25 @@ function timeupdate() {
 	}
 }
 
+function resetFloors() {
+	try {
+		$("#videoplayer").get(0).pause();
+	} catch (e) {
+	}
+	
+	$("#floor-selector").fadeOut(200, function() {
+		$("#canvas-map-wrapper").hide();	
+		$("#video-wrapper").hide();
+		$("#floor-one").css("right","640px");
+		$("#floor-two").css("right","320px");
+		$("#floor-three").css("right","0px");
+		$(".floor-selector").show();
+		$("#video-wrapper").html("");
+	});
+	$("#floor-selector").fadeIn(200);
+}
 
 $(document).ready(function() {
-	
-	$("#loading").fadeIn(1000);
-	
-	//canvasMap = document.getElementById("canvas-map"); // i dont think i need this here any more?
 	
 	$("#canvas-map").mousedown(canvasMousedown); 
 	
@@ -199,12 +214,9 @@ $(document).ready(function() {
 	});
 	
 	$(".floor-selector").click(function() {
-		
-		//console.log($(this).attr("id"));
-
+	
 		points = pathDict[ $(this).attr("id") ];
 		buildMapData();		
-
 
 		$("#video-wrapper").html("<video id='videoplayer' width='620' height='350' controls><source src='' type='video/mp4' /></video>");
 		
@@ -219,7 +231,7 @@ $(document).ready(function() {
 		//console.log(".fs");
  		$(".floor-selector").not( "#"+$(this).attr("id") ).fadeOut(500);
 		//console.log("delay animate");
-		$(this).delay(300).animate({'right':'0'}, 800); 	
+		$(this).delay(300).animate({'right':'0'}, 200); 	
 		//console.log("img animate");
 		//$(this) +" > img").animate({"width": "340px"}, 300);
 		console.log("vw");
@@ -235,18 +247,8 @@ $(document).ready(function() {
 	});
 		
 	$("#backbutton").click(function() {
-		$("#videoplayer").get(0).pause();
 		$("#backbutton").fadeOut();
-		$("#floor-selection").fadeOut(1000, function() {
-			$("#canvas-map-wrapper").hide();	
-			$("#video-wrapper").hide();
-			$("#floor-one").css("right","640px");
-			$("#floor-two").css("right","320px");
-			$("#floor-three").css("right","0px");
-			$(".floor-selector").show();
-			$("#video-wrapper").html("");
-		});
-		$("#floor-selection").fadeIn(1000);
+		resetFloors();
 	});	
 		
 		
@@ -266,10 +268,12 @@ $(document).ready(function() {
 	$("#wrapper").fadeIn(200);
 	
 	$("#nav-walkthru").click(function() {
+		document.getElementById('trailer-video').pause();
+
 		$("#nav-trailer").removeClass("nav-active");
 		$("#nav-walkthru").addClass("nav-active");
+		resetFloors();
 		$("#trailer-wrapper").fadeOut(200, function() { 
-
 			$("#floor-wrapper").fadeIn(200);
 		});
 	});
