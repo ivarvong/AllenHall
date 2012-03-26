@@ -30,56 +30,53 @@
 	<ul>
 		<li><a href="#trailer" class="nav-button nav-active" id="nav-trailer">1. Video Trailer</a></li>
 		<li><a href="#walkthru" class="nav-button" id="nav-walkthru">2. Interactive Video Tour</a></li>
-		<li><a href="#walkthru" class="nav-button" id="nav-walkthru-back" style="display:none">INTERACTIVE TOUR</a></li>
-		<!--<li><a href="#compare" class="nav-button" id="nav-slider">COMPARE SLIDER</a></li>-->
-		<li><a href="#walkthru" class="nav-button" id="about" style="display:none;">About</a></li>
+		<li><a href="#" class="nav-button" id="about-button">About</a></li>
 	</ul>
 </div>	
 
 <div id="trailer-wrapper">
-	<p>Lorum ipsum. This is a video trailer about the construction project.</p>
 	<video id="trailer-video" width="950" height="535" controls=""><source src="http://allenhall.s3.amazonaws.com/video/trailer.mp4" type="video/mp4"></video>
 </div>
 
 
 <div id="floor-wrapper">
-	<p>Lorum ipsum. Choose a floor to explore the new building.</p>
-<div id="floor-selector">
 
-	<div id="backbutton" style="display: none;" class="tk-futura-pt">Back to floor selection</div>
+	<p id="floor-help-text">Choose a floor to explore.</p>
 
-	<div id="floor-one"   class="floor-selector">
-		<img src="http://ivarvong.com/allenhall/images/level1.jpg"/>
-		<p>Floor 1</p>
-	</div>
+	<div id="floor-selector">
 	
-	<div id="floor-two"   class="floor-selector">
-		<img src="http://ivarvong.com/allenhall/images/level2.jpg"/>
-		<p>Floor 2</p>
-	</div>
-
-	<div id="floor-three" class="floor-selector">
-		<img src="http://ivarvong.com/allenhall/images/level3.jpg"/>
-		<p>Floor 3</p>
-	</div>
-
-	<div id="video-wrapper" style="display:none"></div>
+		<!--<div id="backbutton" style="display: none;" class="tk-futura-pt">Back to floor selection</div>-->
 	
-	<div id="canvas-map-wrapper" style="display:none">
-		<canvas id="canvas-map" width="300" height="300">No canvas support.</canvas>
-	</div>
-
-	<div id="prev-button"><< Previous</div>
-	<div id="next-button">Next >></div>
-
-
-</div><!-- end #floor-selection -->
+		<div id="floor-one"   class="floor-selector">
+			<img src="images/level1.jpg"/>
+			<p>Floor 1</p>
+		</div>
+		
+		<div id="floor-two"   class="floor-selector">
+			<img src="images/level2.jpg"/>
+			<p>Floor 2</p>
+		</div>
+	
+		<div id="floor-three" class="floor-selector">
+			<img src="images/level3.jpg"/>
+			<p>Floor 3</p>
+		</div>
+	
+		<div id="video-wrapper" style="display:none"></div>
+		
+		<div id="canvas-map-wrapper" style="display:none">
+			<canvas id="canvas-map" width="300" height="300">No canvas support.</canvas>
+		</div>
+	
+		
+	
+	</div><!-- end #floor-selector -->
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-<script src="/allenhall/js/tabletop/src/tabletop.js"></script>
-<script src="/allenhall/js/libs/jquery.hovercard.min.js"></script>
+<script src="js/tabletop/src/tabletop.js"></script>
+<script src="js/libs/jquery.hovercard.min.js"></script>
 <script src="js/app.js"></script>
 
 <script>

@@ -1,8 +1,10 @@
+/* @override http://ivarvong.com/allenhall/css/allenhall.css */
+
 p {
 		font-family: "futura-pt",sans-serif;
 		font-weight: 300;
 		font-size: 22px;
-	}
+}
 	
 #loading {
 	font-family: "Myriad Pro";
@@ -14,6 +16,7 @@ p {
 	text-align: center;
 	display: none;
 }
+
 #flag h1 {
 	font-family: "Adelle";
 	font-size: 40px;
@@ -32,9 +35,10 @@ p {
 	width: 948px;
 	height: 30px;
 	border: 1px solid #CCC;
-	border-radius: 3px;
 	margin-bottom: 5px;
 	padding-bottom: 3px;
+	border-left: 0;
+	border-right:  0;
 }
 #nav ul {
 	list-style-type: none;
@@ -149,4 +153,11 @@ p {
 	position: absolute;
 	right: 330px;
 	/*right: 0;*/
+}
+
+#about-copy {
+	font-family: "Myriad Pro";
+	font-size: 19px;
+	font-weight: 300;
+	line-height: 1.1em;
 }

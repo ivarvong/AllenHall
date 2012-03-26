@@ -6,6 +6,7 @@ points = [];
 lengths = new Array();
 sumlengths = new Array();
 totalLength = 0;
+about_details = "<h3>Still loading the about page...</h3>"
 
 fileDict = new Array();
 fileDict["floor-one"] =   "http://allenhall.s3.amazonaws.com/video/firstFloor.mp4";
@@ -200,6 +201,7 @@ function resetFloors() {
 		$(".floor-selector").show();
 		$("#video-wrapper").html("");
 	});
+	$("#floor-help-text").html("Choose a floor to explore.");
 	$("#floor-selector").fadeIn(200);
 }
 
@@ -208,7 +210,9 @@ $(document).ready(function() {
 	$("#canvas-map").mousedown(canvasMousedown); 
 	
 	$(".floor-selector").hover(function() {
-		$(this).addClass("floor-hover");
+		if ($("#videoplayer > source").attr("src") == undefined) {
+			$(this).addClass("floor-hover");
+		}
 	}, function() {
 		$(this).removeClass("floor-hover");
 	});
@@ -227,6 +231,8 @@ $(document).ready(function() {
 		v.addEventListener('timeupdate',timeupdate,false);
 		setTimeout( function() { v.play(); }, 1200 );
 		setTimeout( function() { $("#video-wrapper").fadeIn(1000); }, 1500 );
+			
+		$("#floor-help-text").html("Watch your progress through the floor, or click on the path to jump to that spot.");	
 			
 		//console.log(".fs");
  		$(".floor-selector").not( "#"+$(this).attr("id") ).fadeOut(500);
@@ -267,18 +273,19 @@ $(document).ready(function() {
 	*/
 	$("#wrapper").fadeIn(200);
 	
-	$("#nav-walkthru").click(function() {
+	$("#nav-walkthru").click(function(e) {
 		document.getElementById('trailer-video').pause();
 
 		$("#nav-trailer").removeClass("nav-active");
 		$("#nav-walkthru").addClass("nav-active");
 		resetFloors();
-		$("#trailer-wrapper").fadeOut(200, function() { 
+		$("#trailer-wrapper").fadeOut(200, function() { 		
 			$("#floor-wrapper").fadeIn(200);
 		});
+		e.preventDefault();
 	});
 
-	$("#nav-trailer").click(function() {
+	$("#nav-trailer").click(function(e) {
 		$("#nav-walkthru").removeClass("nav-active");
 		$("#nav-trailer").addClass("nav-active");
 		$("#floor-wrapper").fadeOut(200, function() { 
@@ -286,6 +293,16 @@ $(document).ready(function() {
 			
 			$("#trailer-wrapper").fadeIn(200);
 		});
+		e.preventDefault();
 	});
 		
+	$.get('about.html', function(data) {	
+		$("#about-button").hovercard({
+			detailsHTML: data,
+			width: 538,
+			//cardImgSrc: 'http://ejohn.org/files/short.sm.jpg',
+			openOnLeft: false
+		});	
+	});
+	
 });
